@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include <unistd.h>
+#include <string.h>
 #include "main.h"
 /**
  *
@@ -30,6 +31,10 @@ int _printstring(va_list args, char buffer[])
 	{
 		string = "(null)";/** checks for no empty string and make in null*/
 	}
+	else
+	{
+		length = strlen(string);
+	}
 	return (write(1, string, length));/** call write function */
 }
 /**
@@ -39,7 +44,8 @@ int _printstring(va_list args, char buffer[])
  *
  *
  */
-int _printspercent(va_list arg, char buffer[])
+int _printspercent(va_list args, char buffer[])
 {
+	UNUSED(args);
 	return (write(1, "%%", 1));
 }
