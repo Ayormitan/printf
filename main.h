@@ -27,8 +27,6 @@ struct formt
 typedef struct formt formt_t;
 /**
  *
- *
- *
  */
 int _handleprints(const char *formt, int *indx, va_list lists, char buffer[]);
 
