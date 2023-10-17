@@ -2,24 +2,26 @@
 #include <stdarg.h>
 #include "main.h"
 /**
+ * _handleprints - handles all printing of types based on struct defination
  *
  *
  */
-int _handleprints(const char *formt, int *indx, va_list lists, char buffer[], int flags, int width)
+int _handleprints(const char *formt, int *indx, va_list lists,
+		char buffer[], int flags, int width, int size)
 {
 	int i;
 	int lenght_not_known = 0;
 	int print_char = -1;
 
 	formt_t formt_lists[] = {
-	{'c', _printschar}, {'s', _printstring}, {'%', _printspercent},
+	{'c', _printschar}, {'s', _printstring}, {'%', _printspercent}, {'b', _print_unsignedint},
 	{'\0', NULL}
 	};
 	for (i = 0; formt_lists[i].formt != '\0'; i++)
 	{
 		if (formt[*indx] == formt_lists[i].formt)
 		{
-			return (formt_lists[i].fn(lists, buffer, flags, width));
+			return (formt_lists[i].fn(lists, buffer, flags, width, size));
 		}
 	}
 	if (formt_lists[i].formt == '\0')
