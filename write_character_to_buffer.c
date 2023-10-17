@@ -10,7 +10,7 @@
  * Return: number of bytes or -2 if error
  */
 int write_character_to_buffer(char c, char buffer[],
-		int width, int flags, size)
+		int width, int flags, int size)
 {
 	int i = 0;
 	char paddlin = ' ';

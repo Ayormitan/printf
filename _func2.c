@@ -1,16 +1,24 @@
 #include "main.h"
 #
 /**
- *
- *
- * 
+ * _print_unsignedint - prints an unsigned int value to bufer
+ * @args: va-list containg argument passed to function
+ * @buffer: stores formatted unsigned int
+ * @flags: represents various flags used for formatting
+ * @width: minimum width field for formatting
+ * @size: unused
+ * Return: number of written bytes or -1 if eror
  */
-int _print_unsignedint(va_list args, char buffer[], int flags, int width, int size)
+int _print_unsignedint(va_list args, char buffer[],
+		int flags, int width, int size)
 {
 	int i = BUFFER_SIZE - 2;
 	unsigned long int number = va_arg(args, unsigned long int);
 
-	number = convert_unsignedint_to_bin(number, size); 
+	UNUSED(size);
+
+	number = convert_unsignedint_to_bin(number, size);
+
 	if (number == 0)
 	{
 		buffer[i--] = '0';

@@ -3,8 +3,14 @@
 #include "main.h"
 /**
  * _handleprints - handles all printing of types based on struct defination
- *
- *
+ * @formt: pointer to a char string
+ * @indx: represents acurrent indx
+ * @lists: contains variable arguement
+ * @buffer: stores formatted data
+ * @flags: used fro formatting
+ * @width: field width for output
+ * @size: size modifier for output
+ * Return: char written to output or 1 if error
  */
 int _handleprints(const char *formt, int *indx, va_list lists,
 		char buffer[], int flags, int width, int size)
@@ -14,7 +20,8 @@ int _handleprints(const char *formt, int *indx, va_list lists,
 	int print_char = -1;
 
 	formt_t formt_lists[] = {
-	{'c', _printschar}, {'s', _printstring}, {'%', _printspercent}, {'b', _print_unsignedint},
+	{'c', _printschar}, {'s', _printstring}, {'%', _printspercent},
+	{'b', _print_unsignedint},
 	{'\0', NULL}
 	};
 	for (i = 0; formt_lists[i].formt != '\0'; i++)
