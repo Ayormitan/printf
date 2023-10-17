@@ -26,6 +26,7 @@ int _printf(const char *format, ...)
 {
 	int printchar = 0;
 	int i, width = 0;
+	int flags = 0;
 	int printed = 0;
 	int buffindex = 0;
 	char buffer[BUFFER_SIZE];
@@ -52,7 +53,7 @@ int _printf(const char *format, ...)
 		{
 				_printbuffer(buffer, &buffindex);
 				++i;
-				printed = _handleprints(format, &i, lists, buffer, width);
+				printed = _handleprints(format, &i, lists, buffer, flags, width);
 				if (printed == -1)
 					return (-1);
 				printchar += printed;
