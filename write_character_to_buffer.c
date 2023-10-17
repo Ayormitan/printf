@@ -4,11 +4,12 @@
  *
  *
  */
-int write_character_to_buffer(char c, char buffer[], int width, int flags)
+int write_character_to_buffer(char c, char buffer[], int width, int flags, int size)
 {
-	int i =0;
+	int i = 0;
 	char paddlin = ' ';
 
+	UNUSED(size);
 	     if (flags & F_ZERO)
 		     paddlin = '0';
 	buffer[0] = c;
@@ -30,4 +31,41 @@ int write_character_to_buffer(char c, char buffer[], int width, int flags)
 		}
 	}
 	return (write(1, &buffer[0], 1));
+}
+/**
+ *
+ *
+ *
+ *
+ */
+int write_unsignedint_to_buffer(int negative, int indx, char buffer[], int flags, int width, int size)
+{
+	int len = BUFFER_SIZE - indx - 1, i = 0;
+	char paddlin = ' ';
+
+	UNUSED(negative);
+	UNUSED(size);
+	if (indx == BUFFER_SIZE - 2 && buffer[indx] == '0')
+	{
+		return (0);
+	}
+	if ((flags & F_ZERO) && !(flags & F_MINUS))
+	{
+		paddlin = '0';
+	}
+	if (width > len)
+	{
+		for (i = 0; i < width - len; i++)
+		buffer[i] = paddlin;
+		buffer[i] = '\0';
+		if (flags & F_MINUS)
+		{
+			return (write(1, &buffer[indx], len) + write(1, &buffer[0], i));
+		}
+		else
+		{
+			return (write(1, &buffer[0], i) + write(1, &buffer[indx], len));
+		}
+	}
+	return (write(1, &buffer[indx], len));
 }
