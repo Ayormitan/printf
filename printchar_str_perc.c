@@ -81,14 +81,15 @@ int _printspercent(va_list args, char buffer[], int flags, int width, int size)
  * @size: unused
  * Return: bytes writed
  */
-int _printint(va_list args, char buffer[], int flags, int width, int precision, int size)
+int _printint(va_list args, char buffer[], int flags,
+		int width, int precision, int size)
 {
 	int is_neg = 0;
 	int j = BUFFER_SIZE - 2;
 	long int p = va_arg(args, int);
 	unsigned long int num;
 
-	p = convert_unsignedint_to_bin(p, size);
+	p = convsize_num(p, size);
 
 	if (p == 0)
 		buffer[j--] = '0';
@@ -108,5 +109,46 @@ int _printint(va_list args, char buffer[], int flags, int width, int precision, 
 		n /= 10;
 	}
 
-	return(_writenumber(is_neg, j, buffer, flags, width, precision, size)
+	return (_writenumber(is_neg, j, buffer, flags, width, precision, size));
+}
+
+/**
+ * _printoctal - converts unsigned long int ot its octal represntation
+ * @args: variable argument list
+ * @flags: indicates formating option
+ * @width: unused
+ * @buffer: stores octal representation
+ * @pre: precison value
+ * @size: size of number
+ * Return: number of char written
+ */
+int _printoctal(va_list args, char buffer[], int flags,
+		int width, int pre, int size)
+{
+	int j = BUFFER_SIZE - 2;
+	unsigned long int count = va_arg(args, unsigned long int);
+	unsigned long int num_assign = count;
+
+	UNUSED(width);
+i
+	count = convert_unsignedint_to_bin(count, size);
+
+	if (count == 0)
+		buffer[j--] = '0';
+
+	buffer[BUFFER_SIZE - 1] = '\0';
+
+	while (num > 0)
+	{
+		buffer[j--] = (count % 8) + '0';
+		count /= 8;
+	}
+
+	if (flags & F_HASH && num_assign == 0)
+	{
+		buffer[j--] = '0';
+	}
+	j++;
+
+	return (write_unsignedint_to_buffer(0, j, buffer, flags, width, pre, size));
 }
