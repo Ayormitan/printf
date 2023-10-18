@@ -70,3 +70,43 @@ int _printspercent(va_list args, char buffer[], int flags, int width, int size)
 
 	return (write(1, "%%", 1));
 }
+
+/**
+ * _printint - prints an int to the standard poutput
+ * @args: argument lists
+ * @buffer: stores format chars
+ * @flags: flags for various formating
+ * @width: unused
+ * @precision: unused
+ * @size: unused
+ * Return: bytes writed
+ */
+int _printint(va_list args, char buffer[], int flags, int width, int precision, int size)
+{
+	int is_neg = 0;
+	int j = BUFFER_SIZE - 2;
+	long int p = va_arg(args, int);
+	unsigned long int num;
+
+	p = convert_unsignedint_to_bin(p, size);
+
+	if (p == 0)
+		buffer[j--] = '0';
+
+	buffer[BUFFER_SIZE - 1] = '\0';
+	num = (unsigned long int)p;
+
+	if (p < 0)
+	{
+		num = (unsigned long int)((-1) * p);
+		is_neg = 1
+	}
+
+	while (num > 0)
+	{
+		buffer[j--] = (num % 10) + '0';
+		n /= 10;
+	}
+
+	return(_writenumber(is_neg, j, buffer, flags, width, precision, size)
+}
