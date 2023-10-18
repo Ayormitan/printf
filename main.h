@@ -12,7 +12,7 @@
 #define F_MINUS 1
 #define SHORT_H 1
 #define LONG_H 2
-
+#define F_HASH 8
 void _printbuffer(char buffer[], int *buffindex);
 int _printf(const char *format, ...);
 
