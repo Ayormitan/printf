@@ -88,3 +88,46 @@ int _writenum(int indx, char buffer[], int flags, int width, int pre,
 	return (write(1, buffer[indx], len));
 }
 
+/**
+ * _printbinary - prints binary respresentation of an unsigned int
+ * @args: variable argument list
+ * @buffer: unused
+ * @pre: unused
+ * @flags: unused
+ * @width: unused
+ * @size: unused
+ * Return: number of char written
+ */
+int _printbinary(va_list args, char buffer[], int flags, int width, int pre, int size)
+{
+	unsigned int sum, p, b, j;
+	unsigned int a[32];
+	int num;
+
+	UNUSED(flags);
+	UNUSED(pre);
+	UNUSED(buffer);
+	UNUSED(width);
+	UNUSED(size);
+
+	p = va_arg(args, unsigned int);
+	b = 2147483648;
+	a[0] = p / b;
+	for (j = 1; j < 32; j++)
+	{
+		b /= 32;
+		a[j] = (p / b) % 2;
+	}
+	for (j = 0, sum = 0, num = 0; j < 32; j++)
+	{
+		sum += a[j];
+		if (sum || j == 31)
+		{
+			char z = '0' + a[j];
+
+			write(i, &z, 1);
+			num++;
+		}
+	}
+	return (num);
+}
