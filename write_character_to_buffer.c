@@ -10,12 +10,13 @@
  * Return: number of bytes or -2 if error
  */
 int write_character_to_buffer(char c, char buffer[],
-		int width, int flags, int size)
+		int width, int flags, int pre, int size)
 {
 	int i = 0;
 	char paddlin = ' ';
 
 	UNUSED(size);
+	UNUSED(pre);
 
 	if (flags & F_ZERO)
 		paddlin = '0';
@@ -53,13 +54,14 @@ int write_character_to_buffer(char c, char buffer[],
  * Return: number of bytes or -1 if error
  */
 int write_unsignedint_to_buffer(int negative, int indx, char buffer[],
-int flags, int width, int size)
+int flags, int width, int pre, int size)
 {
 	int len = BUFFER_SIZE - indx - 1, i = 0;
 	char paddlin = ' ';
 
 	UNUSED(negative);
 	UNUSED(size);
+	UNUSED(pre);
 	if (indx == BUFFER_SIZE - 2 && buffer[indx] == '0')
 	{
 		return (0);
