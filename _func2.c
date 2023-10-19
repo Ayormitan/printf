@@ -10,12 +10,13 @@
  * Return: number of written bytes or -1 if eror
  */
 int _print_unsignedint(va_list args, char buffer[],
-		int flags, int width, int size)
+		int flags, int width, int pre, int size)
 {
 	int i = BUFFER_SIZE - 2;
 	unsigned long int number = va_arg(args, unsigned long int);
 
 	UNUSED(size);
+	UNUSED(pre);
 
 	number = convert_unsignedint_to_bin(number, size);
 
@@ -30,5 +31,5 @@ int _print_unsignedint(va_list args, char buffer[],
 		number /= 10;
 	}
 	i++;
-	return (write_unsignedint_to_buffer(0, i, buffer, flags, width, size));
+	return (write_unsignedint_to_buffer(0, i, buffer, flags, width, pre, size));
 }
