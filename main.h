@@ -21,7 +21,7 @@ int _printschar(va_list args, char buffer[], int flags, int width, int size);
 int _printstring(va_list args, char buffer[], int flags, int width, int size);
 int _printspercent(va_list args, char buffer[], int flags, int width, int size);
 int _print_unsignedint(va_list args, char buffer[], int flags, int width, int size);
-
+int _printoctal(va_list args, char buffer[], int flags, int width, int pre, int size);
 /**
  *
  *
@@ -44,4 +44,7 @@ int write_unsignedint_to_buffer(int negative, int indx, char buffer[], int flags
 
 /** UTILITIES FILE **/
 long int convert_unsignedint_to_bin(long int number, int size);
+int _writenum(int indx, char buffer[], char paddlin, char extra_char);
+int _writenumber(int is_neg, int indx, char buffer[]);
+long int convsize_num(long int num, int size);
 #endif

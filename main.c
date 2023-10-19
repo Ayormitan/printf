@@ -3,12 +3,16 @@
 #include "main.h"
 
 /**
- *  * main - Entry point
- *   *
- *    * Return: Always 0
- *     */
+ * main - Entry point
+ * Return: Always 0
+ */
 int main(void)
 {
+	int i = 4;
+
+	_printf("my d = %d\n", i);
+	printf("d = %d\n", i);
+	printf("i = %i\n", i);
 	_printf("Character:[%c]\n", 'H');
 	_printf("String:[%s]\n", "I am a string !");
 	printf("String:[%s]\n", "I am a string !");

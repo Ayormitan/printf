@@ -3,24 +3,25 @@
 #include <stdio.h>
 #include <unistd.h>
 /**
- *
- *
- *
- *
+ * _printbuffer - outputs the content of a char buffer
+ * @buffer: contains content to be printed
+ * @buffindex: pointer to int
  */
 void _printbuffer(char buffer[], int *buffindex)
 {
 	if (*buffindex > 0)
 	{
-		write(1, &buffer[0], *buffindex);/** Output the content of buffer if it exits*/
-		*buffindex = 0; /** Will return when there is nothing in the buffer to print*/
+		write(1, &buffer[0], *buffindex);
+		/** Output the content of buffer if it exits*/
+
+		*buffindex = 0;
 	}
 }
 /**
- *
- *
- *
- *
+ * _printf - prints formatted data to the standard output
+ * @format: specifies format of output
+ * @...: variable arguments that corresponds to format
+ * Return: total number of char printed or -1 if error
  */
 int _printf(const char *format, ...)
 {
@@ -35,7 +36,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 	{
-		return (-1);/** the function exits if theirs is nothing in the format string*/
+		return (-1);
 	}
 	va_start(lists, format);
 	for (i = 0; format && format[i] != '\0'; i++)
@@ -45,7 +46,8 @@ int _printf(const char *format, ...)
 			buffer[buffindex++] = format[i];
 			if (buffindex == BUFFER_SIZE)
 			{
-				_printbuffer(buffer, &buffindex);/** During string parsing if BUFFER_SIZE ia full*/
+				_printbuffer(buffer, &buffindex);
+
 				/** we use rite already implemented as _printbuffer to print to stdout*/
 				printchar++;
 			}
