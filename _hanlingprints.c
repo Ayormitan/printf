@@ -7,13 +7,13 @@
  * @indx: represents acurrent indx
  * @lists: contains variable arguement
  * @buffer: stores formatted data
- * @flags: used fro formatting
+ * @flags: used fro formattine
  * @width: field width for output
  * @size: size modifier for output
  * Return: char written to output or 1 if error
  */
 int _handleprints(const char *formt, int *indx, va_list lists,
-		char buffer[], int flags, int width, int size)
+		char buffer[], int flags, int width, int pre, int size)
 {
 	int i;
 	int lenght_not_known = 0;
@@ -21,14 +21,15 @@ int _handleprints(const char *formt, int *indx, va_list lists,
 
 	formt_t formt_lists[] = {
 	{'c', _printschar}, {'s', _printstring}, {'%', _printspercent},
-	{'b', _print_unsignedint},
+	{'u', _print_unsignedint}, {'d', _printint}, {'o', _printoctal},
+	{'b', _printbinary},
 	{'\0', NULL}
 	};
 	for (i = 0; formt_lists[i].formt != '\0'; i++)
 	{
 		if (formt[*indx] == formt_lists[i].formt)
 		{
-			return (formt_lists[i].fn(lists, buffer, flags, width, size));
+			return (formt_lists[i].fn(lists, buffer, flags, width, pre, size));
 		}
 	}
 	if (formt_lists[i].formt == '\0')
