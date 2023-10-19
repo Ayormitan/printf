@@ -18,11 +18,11 @@
  * Return: number of byte or -1 at error
 >>>>>>> 7989be7dd16d865b8eba780599070000f31b5f2a
  */
-int _printschar(va_list args, char buffer[], int flags, int width, int size)
+int _printschar(va_list args, char buffer[], int flags, int width, int pre, int size)
 {
 	char ch = va_arg(args, int);
 
-	return (write_character_to_buffer(ch, buffer, flags, width, size));
+	return (write_character_to_buffer(ch, buffer, flags, width, pre, size));
 }
 
 /**
@@ -34,7 +34,7 @@ int _printschar(va_list args, char buffer[], int flags, int width, int size)
  * @size: unused
  * Return: byte written or -1 at failure
  */
-int _printstring(va_list args, char buffer[], int flags, int width, int size)
+int _printstring(va_list args, char buffer[], int flags, int width, int pre, int size)
 {
 	int length = 0;
 
@@ -44,6 +44,7 @@ int _printstring(va_list args, char buffer[], int flags, int width, int size)
 	UNUSED(buffer);
 	UNUSED(flags);
 	UNUSED(width);
+	UNUSED(pre);
 
 	if (string == NULL)
 	{
@@ -53,7 +54,6 @@ int _printstring(va_list args, char buffer[], int flags, int width, int size)
 	{
 		length = strlen(string);
 	}
-
 	return (write(1, string, length));
 }
 
@@ -67,14 +67,14 @@ int _printstring(va_list args, char buffer[], int flags, int width, int size)
  *
  * Return: bytes written or -1 on failure
  */
-int _printspercent(va_list args, char buffer[], int flags, int width, int size)
+int _printspercent(va_list args, char buffer[], int flags, int width, int pre, int size)
 {
 	UNUSED(size);
 	UNUSED(flags);
 	UNUSED(width);
 	UNUSED(args);
 	UNUSED(buffer);
-
+	UNUSED(pre);
 	return (write(1, "%%", 1));
 }
 
@@ -89,12 +89,13 @@ int _printspercent(va_list args, char buffer[], int flags, int width, int size)
  * Return: bytes writed
  */
 int _printint(va_list args, char buffer[], int flags,
-		int width, int precision, int size)
+		int width, int pre, int size)
 {
 	int is_neg = 0;
 	int j = BUFFER_SIZE - 2;
+
 	long int p = va_arg(args, int);
-	unsigned long int num;
+	unsigned long int n;
 
 	p = convsize_num(p, size);
 
@@ -102,21 +103,19 @@ int _printint(va_list args, char buffer[], int flags,
 		buffer[j--] = '0';
 
 	buffer[BUFFER_SIZE - 1] = '\0';
-	num = (unsigned long int)p;
+	n = (unsigned long int)p;
 
 	if (p < 0)
 	{
-		num = (unsigned long int)((-1) * p);
-		is_neg = 1
+		n = (unsigned long int)((-1) * p);
+		is_neg = 1;
 	}
-
-	while (num > 0)
+	while (n > 0)
 	{
-		buffer[j--] = (num % 10) + '0';
+		buffer[j--] = (n % 10) + '0';
 		n /= 10;
 	}
-
-	return (_writenumber(is_neg, j, buffer, flags, width, precision, size));
+	return (_writenumber(is_neg, j, buffer, flags, width, pre, size));
 }
 
 /**
@@ -137,7 +136,6 @@ int _printoctal(va_list args, char buffer[], int flags,
 	unsigned long int num_assign = count;
 
 	UNUSED(width);
-i
 	count = convert_unsignedint_to_bin(count, size);
 
 	if (count == 0)
@@ -145,7 +143,7 @@ i
 
 	buffer[BUFFER_SIZE - 1] = '\0';
 
-	while (num > 0)
+	while (count > 0)
 	{
 		buffer[j--] = (count % 8) + '0';
 		count /= 8;
@@ -156,6 +154,5 @@ i
 		buffer[j--] = '0';
 	}
 	j++;
-
 	return (write_unsignedint_to_buffer(0, j, buffer, flags, width, pre, size));
 }
