@@ -71,7 +71,7 @@ int _writenum(int indx, char buffer[], int flags, int width, int pre,
 		}
 		else if (!(flags & F_MINUS) && paddlin == ' ')
 		{
-			if (extar_char)
+			if (extra_char)
 				buffer[--indx] = extra_char;
 			return (write(1, &buffer[1], j - 1) + write(1, &buffer[indx], len));
 		}
@@ -80,12 +80,12 @@ int _writenum(int indx, char buffer[], int flags, int width, int pre,
 			if (extra_char)
 				buffer[--padding] = extra_char;
 			return (write(1, &buffer[padding], j - padding) +
-					write(1, buffer[indx], len - (1 - padding)));
+				write(1, &buffer[indx], len - (1 - padding)));
 		}
 	}
 	if (extra_char)
-		buffer[indx] = extra_char;
-	return (write(1, buffer[indx], len));
+		buffer[--indx] = extra_char;
+	return (write(1, &buffer[indx], len));
 }
 
 /**
@@ -103,6 +103,7 @@ int _printbinary(va_list args, char buffer[], int flags, int width, int pre, int
 	unsigned int sum, p, b, j;
 	unsigned int a[32];
 	int num;
+	char z;
 
 	UNUSED(flags);
 	UNUSED(pre);
@@ -123,9 +124,8 @@ int _printbinary(va_list args, char buffer[], int flags, int width, int pre, int
 		sum += a[j];
 		if (sum || j == 31)
 		{
-			char z = '0' + a[j];
-
-			write(i, &z, 1);
+			z = '0' + a[j];
+			write(1, &z, 1);
 			num++;
 		}
 	}
