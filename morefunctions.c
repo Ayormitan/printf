@@ -38,7 +38,8 @@ int _printpointer(va_list args, char buffer[], int flags,
 		extra_char = ' ', len++;
 	indx++;
 
-	return (());
+	return (_writepointer(char buffer[], int indx, int len, int width,
+				int flags, char paddlin, char extra_char, char padding));
 }
 
 /**
