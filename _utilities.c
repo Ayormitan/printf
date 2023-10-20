@@ -51,3 +51,16 @@ int check_digit(char ch)
 	}
 	return (0);
 }
+
+/**
+ * _isprintable - checks for printability
+ * @c: char to checks for printablilty
+ * Return: 1 or 0 if not not printatble
+ */
+int _isprintable(char c)
+{
+	if (c >= 32 && c < 127)
+		return (1);
+
+	return (0);
+}
