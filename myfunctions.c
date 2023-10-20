@@ -98,7 +98,8 @@ int _writenum(int indx, char buffer[], int flags, int width, int pre,
  * @size: unused
  * Return: number of char written
  */
-int _printbinary(va_list args, char buffer[], int flags, int width, int pre, int size)
+int _printbinary(va_list args, char buffer[], int flags,
+		int width, int pre, int size)
 {
 	unsigned int sum, p, b, j;
 	unsigned int a[32];
