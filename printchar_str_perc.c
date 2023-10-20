@@ -3,26 +3,23 @@
 #include "main.h"
 #include <string.h>
 /**
-<<<<<<< HEAD
- * _printchar - handles printing of char
- *
- *
- *
-=======
  * _printschar - prints a single character to a char buffer
  * @args: arguments passed to a function
  * @buffer: stores formatted characters
  * @flags: rep various flags used for formatting
  * @width: minimum width field output
+ * @pre: Handles precision
  * @size: rep size modifier for output
  * Return: number of byte or -1 at error
->>>>>>> 7989be7dd16d865b8eba780599070000f31b5f2a
  */
-int _printschar(va_list args, char buffer[], int flags, int width, int pre, int size)
+int _printschar(va_list args, char buffer[], int flags, int width,
+	int pre, int size)
 {
 	char ch = va_arg(args, int);
-
-	return (write_character_to_buffer(ch, buffer, flags, width, pre, size));
+	{
+	return (write_character_to_buffer(ch, buffer, flags,
+				width, pre, size));
+	}
 }
 
 /**
@@ -31,10 +28,12 @@ int _printschar(va_list args, char buffer[], int flags, int width, int pre, int 
  * @buffer: stores format character
  * @flags: rep several flags
  * @width: unused
+ * @pre: Unused
  * @size: unused
  * Return: byte written or -1 at failure
  */
-int _printstring(va_list args, char buffer[], int flags, int width, int pre, int size)
+int _printstring(va_list args, char buffer[], int flags, int width,
+		int pre, int size)
 {
 	int length = 0;
 
@@ -62,12 +61,14 @@ int _printstring(va_list args, char buffer[], int flags, int width, int pre, int
  * @args: unused
  * @width: unused
  * @size: unused
+ * @pre: Unused
  * @flags: unused
  * @buffer: unused
  *
  * Return: bytes written or -1 on failure
  */
-int _printspercent(va_list args, char buffer[], int flags, int width, int pre, int size)
+int _printspercent(va_list args, char buffer[], int flags, int width,
+		int pre, int size)
 {
 	UNUSED(size);
 	UNUSED(flags);
@@ -84,7 +85,7 @@ int _printspercent(va_list args, char buffer[], int flags, int width, int pre, i
  * @buffer: stores format chars
  * @flags: flags for various formating
  * @width: unused
- * @precision: unused
+ * @pre: Unused
  * @size: unused
  * Return: bytes writed
  */
