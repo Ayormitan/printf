@@ -6,6 +6,7 @@
  * @buffer: stores characters and padding
  * @width: represents minimum with field for output
  * @flags: represents various flags(int)
+ * @pre: unused
  * @size: unused
  * Return: number of bytes or -2 if error
  */
@@ -50,6 +51,7 @@ int write_character_to_buffer(char c, char buffer[],
  * @buffer: buffer to store unsigned int
  * @flags: represents various flags used
  * @width: field width for outputr
+ * @pre: Unused
  * @size: unused
  * Return: number of bytes or -1 if error
  */
