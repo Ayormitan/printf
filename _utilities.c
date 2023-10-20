@@ -74,7 +74,7 @@ int _isprintable(char c)
  */
 int _appendhex(char as_code, char buffer, int j)
 {
-	char rd_to = "0123456789ABCDEF";
+	char rd_to[] = "0123456789ABCDEF";
 
 	if (as_code < 0)
 		as_code *= -1;

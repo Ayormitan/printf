@@ -13,7 +13,7 @@ int _printpointer(va_list args, char buffer[], int flags,
 {
 	char extra_char = 0, paddlin = ' ';
 	int indx = BUFFER_SIZE - 2, len = 2, padding = 1;
-	char rd_to = "0123456789abcdef";
+	char rd_to[] = "0123456789abcdef";
 	unsigned long num_addr;
 	void *addr = va_arg(args, void *);
 
