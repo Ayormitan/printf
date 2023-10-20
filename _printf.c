@@ -25,8 +25,12 @@ void _printbuffer(char buffer[], int *buffindex)
  */
 int _printf(const char *format, ...)
 {
-	int printchar, i, width, flags = 0;
-	int size, pre, printed, buffindex = 0;
+	int i, printchar = 0, printed = 0;
+	int flags = 0;
+	int width = 0;
+	int pre = 0;
+	int size = 0;
+	int buffindex = 0;
 	char buffer[BUFFER_SIZE];
 	va_list lists;
 
@@ -49,12 +53,13 @@ int _printf(const char *format, ...)
 		}
 			else
 		{
-				_printbuffer(buffer, &buffindex);
-				++i;
-				printed = _handleprints(format, &i, lists, buffer,
-						flags, width, pre, size);
-				if (printed == -1)
-					return (-1);
+			_printbuffer(buffer, &buffindex);
+			++i;
+			printed = _handleprints(format, &i, lists, buffer, flags, width, pre, size);
+			{
+			if (printed == -1)
+				return (-1);
+			}
 				printchar += printed;
 		}
 	}
