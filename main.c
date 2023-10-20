@@ -9,7 +9,11 @@
 int main(void)
 {
 	int i = 4;
+	 int len;
+	     int len2;
 
+	   len = _printf("Let's try to printf a simple sentence.\n");
+	       len2 = printf("Let's try to printf a simple sentence.\n");
 	_printf("my d = %d\n", i);
 	printf("d = %d\n", i);
 	printf("i = %i\n", i);
@@ -18,5 +22,9 @@ int main(void)
 	printf("String:[%s]\n", "I am a string !");
 	_printf("Let's try to printf a simple sentence.\n");
 	_printf("%b\n", 98);
+	_printf("Length:[%d, %i]\n", len, len);
+	printf("Length:[%d, %i]\n", len2, len2);
+	_printf("Negative:[%d]\n", -762534);
+	printf("Negative:[%d]\n", -762534);
 	return (0);
 }
