@@ -55,6 +55,8 @@ int _print_unprintable(va_list args, char buffer[], int flags,
 		int width, int pre, int size);
 int _printinrev(va_list args, char buffer[], int flags,
 		int width, int pre, int size);
+int _printrot13(va_list args, char buffer[], int flags,
+                int width, int pre, int size);
 
 /** Write char, string and others to buffer */
 int write_character_to_buffer(char c, char buffer[], int width,
