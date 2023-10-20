@@ -9,6 +9,7 @@
  * @buffer: stores formatted data
  * @flags: used fro formattine
  * @width: field width for output
+ * @pre: precision for output
  * @size: size modifier for output
  * Return: char written to output or 1 if error
  */
