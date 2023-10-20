@@ -105,3 +105,31 @@ int _writepointer(char buffer[], int indx, int len, int width,
 		buffer[--indx] = extra_char;
 	return (write(1, &buffer[indx], BUFFER_SIZE - indx - 1));
 }
+
+/**
+ */
+int _print_unprintable(va_list args, char buffer[], int flags, int width, int pre, int size)
+{
+	int j = 0, dist = 0;
+	char *str = va_arg(args, char *);
+
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(pre);
+	UNUSED(size);
+
+	if (str == NULL)
+		return (write(1, "(null)", 6));
+
+	while (str[j] != '\0')
+	{
+		if (_isprintable(str[j]))
+			buffer[j + dist] = str[j];
+		else
+			dist += _appendhex(str[j], buffer, j + dist);
+		j++;
+	}
+	buffer[j + dist] = '\0';
+
+	return (write(1, buffer, j + dist));
+}
