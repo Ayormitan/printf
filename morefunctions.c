@@ -188,11 +188,11 @@ int _printinrev(va_list args, char buffer[], int flags,
 /**
  * _printrot13 - prints a string using rot13 chipher algorithm
  * @args: va list containing arguments
- * @bufer: unused
+ * @buffer: unused
  * @flags: unused
  * @width: unused
  * @pre: unused
- * size: unused
+ * @size: unused
  * Return: number of char written
  */
 int _printrot13(va_list args, char buffer[], int flags,
