@@ -38,7 +38,7 @@ int _printint(va_list args, char buffer[], int flags,
 /**
  * struct formt - Format struct defination
  *@fn: lists of types
- *@formt: name for format
+ *@formt: name for formt
  */
 struct formt
 {

@@ -45,7 +45,7 @@ int write_character_to_buffer(char c, char buffer[],
 	return (write(1, &buffer[0], 1));
 }
 /**
- * write_unsignedint_to_buffer - writes an unsigned int value to char buffer
+ * write_unsignedint_to_buffer - writes an unsigned int values to char buffer
  * @negative: unused
  * @indx: represents current index in buffer
  * @buffer: buffer to store unsigned int

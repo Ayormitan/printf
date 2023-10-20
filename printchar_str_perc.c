@@ -83,7 +83,7 @@ int _printspercent(va_list args, char buffer[], int flags, int width,
  * _printint - prints an int to the standard poutput
  * @args: argument lists
  * @buffer: stores format chars
- * @flags: flags for various formatings
+ * @flags: flags for various formating
  * @width: unused
  * @pre: Unused
  * @size: unused
