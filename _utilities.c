@@ -72,7 +72,7 @@ int _isprintable(char c)
  * @j: increments inddex as charactr is appended
  * Return: int value
  */
-int _appendhex(char as_code, char buffer, int j)
+int _appendhex(char as_code, char buffer[], int j)
 {
 	char rd_to[] = "0123456789ABCDEF";
 

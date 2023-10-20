@@ -58,7 +58,7 @@ int write_character_to_buffer(char c, char buffer[], int width,
 int write_unsignedint_to_buffer(int negative, int indx, char buffer[],
 		int flags, int width, int pre, int size);
 int _writepointer(char buffer[], int indx, int len, int width,
-                int flags, char paddlin, char extra_char, char padding);
+                int flags, char paddlin, char extra_char, int padding);
 
 /** UTILITIES FILE **/
 long int convert_unsignedint_to_bin(long int number, int size);
@@ -68,6 +68,7 @@ int _writenumber(int is_neg, int indx, char buffer[],
 		int flags, int width, int pre, int size);
 long int convsize_num(long int num, int size);
 int check_digit(char ch);
+int _isprintable(char c);
 
 /**  Gets functions */
 int size_handling(const char *formt, int *i);
