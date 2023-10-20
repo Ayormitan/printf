@@ -73,25 +73,25 @@ int width_handling(const char *formt, int *i, va_list type)
  */
 int prec_handling(const char *formt, int *i, va_list type)
 {
-	int prec = -1;
+	int pre = -1;
 	int current_indx = *i + 1;
 
 	if (formt[current_indx] != '.')
 	{
-		return (prec);
+		return (pre);
 	}
-	prec = 0;
+	pre = 0;
 	for (current_indx += 1; formt[current_indx] != '\0'; current_indx++)
 	{
 		if (check_digit(formt[current_indx]))
 		{
-			prec *= 10;
-			prec += formt[current_indx] - '0';
+			pre *= 10;
+			pre += formt[current_indx] - '0';
 		}
 		else if (formt[current_indx] == '*')
 		{
 			current_indx++;
-			prec = va_arg(type, int);
+			pre = va_arg(type, int);
 			break;
 		}
 		else
@@ -100,7 +100,7 @@ int prec_handling(const char *formt, int *i, va_list type)
 		}
 	}
 	*i = current_indx - 1;
-	return (prec);
+	return (pre);
 }
 /**
  * flags_handling - Get flags to arguements
