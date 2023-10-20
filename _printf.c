@@ -47,7 +47,6 @@ int _printf(const char *format, ...)
 			if (buffindex == BUFFER_SIZE)
 			{
 				_printbuffer(buffer, &buffindex);
-		/** we use rite already implemented as _printbuffer to print to stdout*/
 				printchar++;
 			}
 		}
