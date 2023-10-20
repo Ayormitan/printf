@@ -19,7 +19,7 @@ long int convert_unsignedint_to_bin(long int number, int size)
 }
 
 /**
- * convsize_num - converts an int to number
+ * convsize_num - convert an int to number
  * @num: long int representing int
  * @size: int representing size
  * Return: converted unsigned int

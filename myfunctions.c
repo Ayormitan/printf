@@ -90,7 +90,7 @@ int _writenum(int indx, char buffer[], int flags, int width, int pre,
 
 /**
  * _printbinary - prints binary respresentation of an unsigned int
- * @args: variable argument list
+ * @args: variable argument listis
  * @buffer: unused
  * @pre: unused
  * @flags: unused
