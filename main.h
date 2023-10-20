@@ -52,4 +52,11 @@ long int convert_unsignedint_to_bin(long int number, int size);
 int _writenum(int indx, char buffer[], int flags, int width, int pre, int len, char paddlin, char extra_char);
 int _writenumber(int is_neg, int indx, char buffer[], int flags, int width, int pre, int size);
 long int convsize_num(long int num, int size);
+int check_digit(char ch);
+
+/**  Gets functions */
+int size_handling(const char *formt, int *i);
+int width_handling(const char *formt, int *i, va_list type);
+int prec_handling(const char *formt, int *i, va_list type);
+int check_flags(const char *formt, int *i);
 #endif
