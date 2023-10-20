@@ -35,5 +35,5 @@ long int convsize_num(long int num, int size)
 		return ((short)num);
 	}
 
-	return ((int)num)
+	return ((int)num);
 }

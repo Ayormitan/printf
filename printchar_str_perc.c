@@ -100,13 +100,13 @@ int _printint(va_list args, char buffer[], int flags,
 	if (p < 0)
 	{
 		num = (unsigned long int)((-1) * p);
-		is_neg = 1
+		is_neg = 1;
 	}
 
 	while (num > 0)
 	{
 		buffer[j--] = (num % 10) + '0';
-		n /= 10;
+		p /= 10;
 	}
 
 	return (_writenumber(is_neg, j, buffer, flags, width, precision, size));
@@ -130,7 +130,7 @@ int _printoctal(va_list args, char buffer[], int flags,
 	unsigned long int num_assign = count;
 
 	UNUSED(width);
-i
+
 	count = convert_unsignedint_to_bin(count, size);
 
 	if (count == 0)
@@ -138,7 +138,7 @@ i
 
 	buffer[BUFFER_SIZE - 1] = '\0';
 
-	while (num > 0)
+	while (count > 0)
 	{
 		buffer[j--] = (count % 8) + '0';
 		count /= 8;

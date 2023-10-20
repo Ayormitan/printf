@@ -71,7 +71,7 @@ int _writenum(int indx, char buffer[], int flags, int width, int pre,
 		}
 		else if (!(flags & F_MINUS) && paddlin == ' ')
 		{
-			if (extar_char)
+			if (extra_char)
 				buffer[--indx] = extra_char;
 			return (write(1, &buffer[1], j - 1) + write(1, &buffer[indx], len));
 		}
@@ -98,7 +98,8 @@ int _writenum(int indx, char buffer[], int flags, int width, int pre,
  * @size: unused
  * Return: number of char written
  */
-int _printbinary(va_list args, char buffer[], int flags, int width, int pre, int size)
+int _printbinary(va_list args, char buffer[], int flags,
+		int width, int pre, int size)
 {
 	unsigned int sum, p, b, j;
 	unsigned int a[32];
@@ -125,7 +126,7 @@ int _printbinary(va_list args, char buffer[], int flags, int width, int pre, int
 		{
 			char z = '0' + a[j];
 
-			write(i, &z, 1);
+			write(1, &z, 1);
 			num++;
 		}
 	}

@@ -19,13 +19,15 @@ int _printhex_inupper(va_list args, char buffer[], int flags,
 /**
  * _printhexdec - prints hexadecimal unsigned number
  * @args: argument list
- * @buffer: stores hexadecimal representatio
+ * @buffer: stores hexadecimal representation
+ * @width: output width
  * @flags: indicates formating option
  * @pre: precision value
  * @size: size of number
- * @Return: number of value written
+ * Return: number of value written
  */
-int _printhexdec(va_list args, char buffer[], int flags, int width, int prec, int size)
+int _printhexdec(va_list args, char buffer[], int flags,
+		int width, int pre, int size)
 {
 	return (_printhex(args, "0123456789abcdef", buffer,
 				flags, 'x', width, pre, size));
@@ -39,11 +41,12 @@ int _printhexdec(va_list args, char buffer[], int flags, int width, int prec, in
  * @flags: indicatea formating option
  * @flag_c: char used for hexadecimal representation
  * @width: output width
+ * @pre: precision value
  * @size: size of number
  * Return: number written to char
  */
-int _printhex(va_list args, char rd_to[], char buffer[], int flags, char flag_c,
-		int width, int pre, int size)
+int _printhex(va_list args, char rd_to[], char buffer[], int flags,
+		char flag_c, int width, int pre, int size)
 {
 	int j = BUFFER_SIZE - 2;
 	unsigned long int count = va_arg(args, unsigned long int);
@@ -61,7 +64,7 @@ int _printhex(va_list args, char rd_to[], char buffer[], int flags, char flag_c,
 	while (count > 0)
 	{
 		buffer[j--] = rd_to[count % 16];
-		num /= 16;
+		count /= 16;
 	}
 
 	if (flags & F_HASH && assign_num != 0)
@@ -71,5 +74,6 @@ int _printhex(va_list args, char rd_to[], char buffer[], int flags, char flag_c,
 	}
 	j++;
 
-	return (write_unsignedint_to_buffer(0, j, buffer, flags, width, precision, size));
+	return (write_unsignedint_to_buffer(0, j, buffer,
+				flags, width, pre, size));
 }
