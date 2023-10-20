@@ -51,6 +51,8 @@ typedef struct formt formt_t;
 
 int _handleprints(const char *formt, int *indx, va_list lists, char buffer[],
 		int flags, int width, int pre, int size);
+int _print_unprintable(va_list args, char buffer[], int flags,
+		int width, int pre, int size);
 
 /** Write char, string and others to buffer */
 int write_character_to_buffer(char c, char buffer[], int width,
@@ -69,10 +71,12 @@ int _writenumber(int is_neg, int indx, char buffer[],
 long int convsize_num(long int num, int size);
 int check_digit(char ch);
 int _isprintable(char c);
+int _appendhex(char as_code, char buffer[], int j);
 
 /**  Gets functions */
 int size_handling(const char *formt, int *i);
 int width_handling(const char *formt, int *i, va_list type);
 int prec_handling(const char *formt, int *i, va_list type);
 int flags_handling(const char *formt, int *i);
+
 #endif
