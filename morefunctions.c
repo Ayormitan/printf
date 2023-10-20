@@ -107,6 +107,14 @@ int _writepointer(char buffer[], int indx, int len, int width,
 }
 
 /**
+ * _print_unprintable - print strings wit unpritable characters
+ * @args: va list containing argument
+ * @buffer: array to store resulting string
+ * @flags: unused
+ * @width: unused
+ * @pre: unused
+ * @size: unused
+ * Return: number of characters written
  */
 int _print_unprintable(va_list args, char buffer[], int flags, int width, int pre, int size)
 {
@@ -132,4 +140,46 @@ int _print_unprintable(va_list args, char buffer[], int flags, int width, int pr
 	buffer[j + dist] = '\0';
 
 	return (write(1, buffer, j + dist));
+}
+
+/**
+ * _printinrev - prints a string in reverse
+ * @args: a va lists containing argument
+ * @buffer: unsued
+ * @flags: unused
+ * @width: unsued
+ * @size: unused
+ * @pre: precision value
+ * Return: number of char written
+ */
+int _printinrev(va_list args, char buffer[], int flags, int width, int pre, int size)
+{
+	char c;
+	char *str;
+	int j, num = 0;
+
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(size);
+
+	str = va_arg(args, char *);
+
+	if (str == NULL)
+	{
+		UNUSED(pre);
+
+		str = ")null(";
+	}
+
+	for (j = 0; str[j]; j++)
+		;
+	for (j = j - 1; j >= 0; j--)
+	{
+		c = str[j];
+
+		write(1, &c, 1);
+		num++;
+	}
+	return (num);
 }
