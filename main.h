@@ -58,5 +58,5 @@ int check_digit(char ch);
 int size_handling(const char *formt, int *i);
 int width_handling(const char *formt, int *i, va_list type);
 int prec_handling(const char *formt, int *i, va_list type);
-int check_flags(const char *formt, int *i);
+int flags_handling(const char *formt, int *i);
 #endif
