@@ -64,3 +64,25 @@ int _isprintable(char c)
 
 	return (0);
 }
+
+/**
+ * _appendhex - appends hexadecimal represntation of an ascii
+ * @as_code: ascii code to be covenrted  and appended to buffer
+ * @buffer: array character where hexadecimal rep will be appended
+ * @j: increments inddex as charactr is appended
+ * Return: int value
+ */
+int _appendhex(char as_code, char buffer, int j)
+{
+	char rd_to = "0123456789ABCDEF";
+
+	if (as_code < 0)
+		as_code *= -1;
+
+	buffer[j++] = '\\';
+	buffer[j++] = 'x';
+	buffer[j++] = rd_to[as_code / 16];
+	buffer[j] = rd_to[as_code % 16];
+
+	return (3);
+}
