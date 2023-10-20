@@ -40,7 +40,7 @@ int _printpointer(va_list args, char buffer[], int flags,
 		paddlin = '0';
 	}
 	if (flags & F_PLUS)
-		extra_char = +, len++;
+		extra_char = '+', len++;
 	else if (flags & F_SPACE)
 		extra_char = ' ', len++;
 	indx++;
@@ -61,7 +61,7 @@ int _printpointer(va_list args, char buffer[], int flags,
  * Return: numbers of char written
  */
 int _writepointer(char buffer[], int indx, int len, int width,
-		int flags, char paddlin, char extra_char, char padding);
+		int flags, char paddlin, char extra_char, int padding)
 {
 	int j;
 
@@ -89,19 +89,19 @@ int _writepointer(char buffer[], int indx, int len, int width,
 				buffer[--indx] = extra_char;
 			return (write(1, &buffer[3], j - 3) + write(1, &buffer[indx], len));
 		}
-		else if (!(flags & F_MINUS) == '0')
+		else if (!(flags & F_MINUS) && paddlin == '0')
 		{
 			if (extra_char)
 				buffer[--padding] = extra_char;
 			buffer[1] = '0';
 			buffer[2] = 'x';
-			return (write(1, &buffer[padding], j - padding) + write(1, buffer[indx], len - (1 - padding) - 2));
+			return (write(1, &buffer[padding], j - padding) + write(1, &buffer[indx], len - (1 - padding) - 2));
 		}
 	}
 	buffer[--indx] = 'x';
 	buffer[--indx] = '0';
 
 	if (extra_char)
-		buffer[--ind] = extar_char;
+		buffer[--indx] = extra_char;
 	return (write(1, &buffer[indx], BUFFER_SIZE - indx - 1));
 }
