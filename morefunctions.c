@@ -7,6 +7,7 @@
  * @width: minimum field width
  * @pre: precision value
  * @size: size modifier
+ * Return: number of char
  */
 int _printpointer(va_list args, char buffer[], int flags,
 		int width, int pre, int size)
@@ -25,7 +26,6 @@ int _printpointer(va_list args, char buffer[], int flags,
 		return (write(1, "(nil)", 5));
 
 	buffer[BUFFER_SIZE - 1] = '\0';
-
 	num_addr = (unsigned long)addr;
 
 	while (num_addr > 0)
@@ -45,7 +45,8 @@ int _printpointer(va_list args, char buffer[], int flags,
 		extra_char = ' ', len++;
 	indx++;
 
-	return (_writepointer(buffer, indx, len, width, flags, paddlin, extra_char, padding));
+	return (_writepointer(buffer, indx, len, width,
+				flags, paddlin, extra_char, padding));
 }
 
 /**
@@ -75,7 +76,6 @@ int _writepointer(char buffer[], int indx, int len, int width,
 		{
 			buffer[--indx] = 'x';
 			buffer[--indx] = '0';
-
 			if (extra_char)
 				buffer[--indx] = extra_char;
 			return (write(1, &buffer[indx], len) + write(1, &buffer[3], j - 3));
@@ -84,7 +84,6 @@ int _writepointer(char buffer[], int indx, int len, int width,
 		{
 			buffer[--indx] = 'x';
 			buffer[--indx] = '0';
-
 			if (extra_char)
 				buffer[--indx] = extra_char;
 			return (write(1, &buffer[3], j - 3) + write(1, &buffer[indx], len));
@@ -95,12 +94,12 @@ int _writepointer(char buffer[], int indx, int len, int width,
 				buffer[--padding] = extra_char;
 			buffer[1] = '0';
 			buffer[2] = 'x';
-			return (write(1, &buffer[padding], j - padding) + write(1, &buffer[indx], len - (1 - padding) - 2));
+			return (write(1, &buffer[padding], j - padding)
+					+ write(1, &buffer[indx], len - (1 - padding) - 2));
 		}
 	}
 	buffer[--indx] = 'x';
 	buffer[--indx] = '0';
-
 	if (extra_char)
 		buffer[--indx] = extra_char;
 	return (write(1, &buffer[indx], BUFFER_SIZE - indx - 1));
@@ -116,7 +115,8 @@ int _writepointer(char buffer[], int indx, int len, int width,
  * @size: unused
  * Return: number of characters written
  */
-int _print_unprintable(va_list args, char buffer[], int flags, int width, int pre, int size)
+int _print_unprintable(va_list args, char buffer[],
+		int flags, int width, int pre, int size)
 {
 	int j = 0, dist = 0;
 	char *str = va_arg(args, char *);
@@ -152,7 +152,8 @@ int _print_unprintable(va_list args, char buffer[], int flags, int width, int pr
  * @pre: precision value
  * Return: number of char written
  */
-int _printinrev(va_list args, char buffer[], int flags, int width, int pre, int size)
+int _printinrev(va_list args, char buffer[], int flags,
+		int width, int pre, int size)
 {
 	char c;
 	char *str;
@@ -180,6 +181,60 @@ int _printinrev(va_list args, char buffer[], int flags, int width, int pre, int 
 
 		write(1, &c, 1);
 		num++;
+	}
+	return (num);
+}
+
+/**
+ * _printrot13 - prints a string using rot13 chipher algorithm
+ * @args: va list containing arguments
+ * @bufer: unused
+ * @flags: unused
+ * @width: unused
+ * @pre: unused
+ * size: unused
+ * Return: number of char written
+ */
+int _printrot13(va_list args, char buffer[], int flags,
+		int width, int pre, int size)
+{
+	char *str;
+	char z;
+	int num = 0;
+	unsigned int j, i;
+	char in_alp[] =
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char out_alp[] =
+		"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	str = va_arg(args, char *);
+
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(pre);
+	UNUSED(buffer);
+	UNUSED(size);
+
+	if (str == NULL)
+		str = "(AHYY)";
+	for (j = 0; str[j]; j++)
+	{
+		for (i = 0; in_alp[i]; i++)
+		{
+			if (in_alp[i] == str[j])
+			{
+				z = out_alp[i];
+				write(1, &z, 1);
+				num++;
+				break;
+			}
+		}
+		if (!in_alp[i])
+		{
+			z = str[j];
+			write(1, &z, 1);
+			num++;
+		}
 	}
 	return (num);
 }
