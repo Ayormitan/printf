@@ -34,6 +34,8 @@ int _printbinary(va_list args, char buffer[], int flags, int width,
 		int pre, int size);
 int _printint(va_list args, char buffer[], int flags,
 		int width, int pre, int size);
+int _printhex(va_list args, char rd_to[], char buffer[], int flags,
+                char flag_c, int width, int pre, int size);
 /** Handle write and parsing functions prototypes**/
 /**
  * struct formt - Format struct defination
