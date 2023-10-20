@@ -37,3 +37,17 @@ long int convsize_num(long int num, int size)
 
 	return ((int)num);
 }
+/**
+ * check_digit - Check if character is digit
+ *
+ * @ch: char to check
+ * Return: 1 if true else 0;
+ */
+int check_digit(char ch)
+{
+	if (ch >= '0' && ch <= '9')
+	{
+		return (1);
+	}
+	return (0);
+}
