@@ -6,6 +6,7 @@
  * @buffer: stores formatted unsigned int
  * @flags: represents various flags used for formatting
  * @width: minimum width field for formatting
+ * @pre: unused
  * @size: unused
  * Return: number of written bytes or -1 if eror
  */
